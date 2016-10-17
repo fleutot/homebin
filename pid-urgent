@@ -1,0 +1,7 @@
+#!/bin/bash
+# --any and --name present only as a work-around, see: https://github.com/jordansissel/xdotool/issues/14
+ids=$(xdotool search --any --pid "$1" --name "dummy")
+
+for id in $ids; do
+    seturgent "$id"
+done

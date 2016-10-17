@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Set the terminal title, if I'm running in a terminal
+if [[ -t 1 ]]; then echo -ne "\033]0;${1}\007"; fi
+
+/usr/bin/ssh "$@"
+EXIT=$?
+
+if [[ -t 1 ]]; then echo -ne "\033]0;$USER@$HOSTNAME\007"; fi
+
+exit ${EXIT}

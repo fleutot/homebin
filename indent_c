@@ -1,0 +1,2 @@
+#!/bin/bash
+indent -kr -l80 -bbo -nut $1

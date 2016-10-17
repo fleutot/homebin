@@ -1,0 +1,10 @@
+#!/bin/bash
+source ~/bin/git-prompt
+
+current_fs=$(df . -T | awk 'NR==2{print $2}')
+
+if [ "$current_fs" = fuse.sshfs ] ; then
+    printf "%s" "[!sshfs!]"
+else
+    printf "%s" "$(__git_ps1)"
+fi

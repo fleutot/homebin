@@ -1,0 +1,10 @@
+Downloads/
+Dropbox/
+.cache/
+.adobe/
+.Skype/
+.dropbox*/
+tmp/
+.local/share/Trash/
+*auto-save-list*
+.encrypted/
