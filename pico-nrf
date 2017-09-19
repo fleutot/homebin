@@ -1,0 +1,3 @@
+#!/bin/bash
+
+picocom --baud 115200 /dev/ttyACM0 --imap lfcrlf --omap crlf --echo
