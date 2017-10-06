@@ -8,7 +8,7 @@
 # * * * * * *  DISPLAY=:0 $HOME/bin/wallpaper_random_set.sh >> /tmp/cron_wallpaper.log 2>&1
 
 WALLPAPER_DIR="$HOME/Pictures/wallpapers"
-DISPLAY=:0 feh --bg-fill $WALLPAPER_DIR/$(ls $WALLPAPER_DIR | sort -R | head -1)
+DISPLAY=:0 feh --bg-fill "$WALLPAPER_DIR/$(ls $WALLPAPER_DIR | sort -R | head -1)"
 #DISPLAY=:0 feh --bg-fill --randomize $WALLPAPER_DIR # This sets different wallpapers for different monitors
 
 # I read somewhere that you can update your PATH in the cron file (it's not the
