@@ -1,0 +1,6 @@
+#!/bin/bash
+
+TTY=$1
+shift
+
+picocom --baud 115200 /dev/$TTY --imap igncr | awk '{ date = strftime("%Y-%m-%dT%H:%M:%S\r"); print $0, date ; fflush(); }' $@
