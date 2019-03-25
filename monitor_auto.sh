@@ -21,3 +21,8 @@ for m in ${ALL_CONNECTED_MONITORS[@]} ; do
         PREV_MON=$m
     fi
 done
+
+if type compton; then
+    # start compton if not running. xrandr seems to crash it sometimes.
+    pgrep compton || compton --config "$HOME/.xmonad/compton.conf" &
+fi
