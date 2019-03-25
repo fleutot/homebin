@@ -1,0 +1,27 @@
+#!/bin/bash
+
+display_usage() {
+    echo "Usage:"
+    echo "    $(basename $0) <tty> [bit rate]"
+}
+
+if [[ ( $@ == "--help") ||  $@ == "-h" ]]
+then
+   display_usage
+   exit 0
+fi
+
+if [[ $# -lt 1 ]]; then
+   display_usage
+   exit 1
+fi
+
+tty=$1
+shift
+
+if [[ $# -gt 0 ]]; then
+   bit_rate=$1
+   stty -F $tty $bit_rate
+fi
+
+awk '{ print strftime("%Y-%m-%d %H:%M:%S |"), $0; fflush(); }' $tty
