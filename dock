@@ -1,0 +1,15 @@
+#!/bin/bash
+if type monitor_ext_set.sh ; then
+    monitor_ext_set.sh
+    wallpaper_random_set.sh
+fi
+
+if type compton; then
+    # start compton if not running. xrandr seems to crash it sometimes.
+    pgrep compton || compton --config "$HOME/.xmonad/compton.conf" &
+fi
+
+if type layout_kinesis.sh; then
+    # Changing layout looks like it does something with X that breaks the layout
+    layout_kinesis.sh
+fi
