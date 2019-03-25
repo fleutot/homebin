@@ -29,3 +29,9 @@ echo "bindsym \$mod+p exec /home/<your username>/.i3/i3lock-fancy-multimonitor/l
 ```
 
 Now reload the i3 configuration file. By default, the key binding is `$mod+Shift+c`.
+
+## Command line parameters
+
+`-n` or `--no-text`: hide the "Type password to unlock" text.
+
+`-p` or `--pixelate`: pixelate the background instead of blurring it. Might be faster.
