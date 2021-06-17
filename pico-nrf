@@ -3,5 +3,5 @@
 TTY=$1
 shift
 
-picocom --baud 115200 /dev/$TTY --imap lfcrlf --omap crlf --echo $@
+picocom --baud 115200 $TTY --imap lfcrlf --omap crlf --echo $@
 #picocom --baud 115200 /dev/ttyUSB0 --imap lfcrlf --omap crlf --echo

@@ -1,4 +1,13 @@
 #!/bin/bash
+# Note: standard awk, which comes as default in some GNU/Linux distributions,
+# does not work here.
+# Install gawk, e.g.:
+# sudo apt install gawk
+
+if ! awk --version | head -1 | grep "GNU Awk" >/dev/null 2>&1 ; then
+    echo "GNU Awk required, install with e.g. `sudo apt install gawk`" ;
+    exit 1
+fi
 
 display_usage() {
     echo "Usage:"
@@ -24,4 +33,4 @@ if [[ $# -gt 0 ]]; then
    stty -F $tty $bit_rate
 fi
 
-awk '{ print strftime("%Y-%m-%d %H:%M:%S |"), $0; fflush(); }' $tty
+awk '{ print strftime("%Y-%m-%dT%H:%M:%S |"), $0; fflush(); }' $tty

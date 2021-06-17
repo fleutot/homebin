@@ -1,15 +1,21 @@
 #!/bin/bash
+LOG_REDIRECT=">> /tmp/xmonad.log"
+echo "Dock" $LOG_REDIRECT
+
 if type monitor_ext_set.sh ; then
     monitor_ext_set.sh
     wallpaper_random_set.sh
 fi
 
 if type compton; then
+    echo "Start compton if not running" $LOG_REDIRECT
     # start compton if not running. xrandr seems to crash it sometimes.
     pgrep compton || compton --config "$HOME/.xmonad/compton.conf" &
 fi
 
 if type layout_kinesis.sh; then
-    # Changing layout looks like it does something with X that breaks the layout
+    # Changing mode looks like it does something with X that breaks the layout
     layout_kinesis.sh
 fi
+
+pkill xfce4-power-manager

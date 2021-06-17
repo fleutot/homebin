@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "monitor_laptop_set" > /tmp/xmonad.log
 
 # Note no space before "connected", which means "disconnected" will also match.
 ALL_MONITORS_STR=$(xrandr --current | grep "connected " | awk 'BEGIN { ORS = " "}; {print $1}' )

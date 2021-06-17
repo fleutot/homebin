@@ -24,6 +24,6 @@ if [[ $# -gt 0 ]]; then
    stty -F $tty $bit_rate
 fi
 
-cat $tty | awk '{ date = strftime("%Y-%m-%dT%H:%M:%S.%N\r"); print $0, date ; fflush(); }'
+cat $tty | awk '{ date = strftime("%Y-%m-%dT%H:%M:%S\r"); print $0, date ; fflush(); }'
 #cat $tty | awk '{ print $0, d; fflush() }' d=$(date -Ins)
 #cat $tty | awk '{ print $0, date ; fflush(); }' date=$(date +%Y-%m-%dT%H:%M:%S.%N)
