@@ -26,7 +26,7 @@ xrandr --output $MONITOR_LEFT --auto
 
 if [ $NB_CONNECT_OUTPUT == 3 ] ; then
     xrandr \
-	--output $MONITOR_LEFT --pos 1600x0 --mode 1920x1200 --auto --primary \
+	--output $MONITOR_LEFT --pos 1680x0 --mode 1920x1200 --auto --primary \
         --output $MONITOR_RIGHT --right-of $MONITOR_LEFT --auto \
-	--output $MONITOR_LAPTOP --auto --pos 0x300 --mode 1600x900
+	--output $MONITOR_LAPTOP --auto --pos 0x150 --mode 1680x1050
 fi

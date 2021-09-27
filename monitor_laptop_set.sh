@@ -10,7 +10,7 @@ for m in ${ALL_MONITORS[@]} ; do
     xrandr --output $m --off
 done
 
-MONITOR_LAPTOP="eDP1"
+MONITOR_LAPTOP="eDP-1"
 echo "Monitor laptop is $MONITOR_LAPTOP"
 xrandr --output $MONITOR_LAPTOP --auto --primary
 
