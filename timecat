@@ -30,7 +30,8 @@ shift
 
 if [[ $# -gt 0 ]]; then
    bit_rate=$1
-   stty -F $tty $bit_rate
+   stty -F $tty $bit_rate -echo
 fi
 
 awk '{ print strftime("%Y-%m-%dT%H:%M:%S |"), $0; fflush(); }' $tty
+#awk '{ print $0, "| ", $1; fflush(); }' $(date +%Y-%M-%dT%H:%M:%S.%3N) $tty
