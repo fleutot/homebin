@@ -1,13 +1,13 @@
 #!/bin/bash
-echo "monitor_laptop_set" > /tmp/xmonad.log
+echo "monitor_laptop_set" >> "$XMONAD_LOG_FILE"
 
 # Note no space before "connected", which means "disconnected" will also match.
 ALL_MONITORS_STR=$(xrandr --current | grep "connected " | awk 'BEGIN { ORS = " "}; {print $1}' )
 read -r -a ALL_MONITORS <<< "$ALL_MONITORS_STR"
 
-for m in ${ALL_MONITORS[@]} ; do
+for m in "${ALL_MONITORS[@]}" ; do
     echo "Turning off monitor $m"
-    xrandr --output $m --off
+    xrandr --output "$m" --off
 done
 
 MONITOR_LAPTOP="eDP-1"
@@ -19,3 +19,4 @@ if type compton; then
     pgrep compton || compton --config "$HOME/.xmonad/compton.conf" &
 fi
 
+echo "monitor_laptop_set finished" >> "$XMONAD_LOG_FILE"

@@ -1,6 +1,5 @@
 #!/bin/bash
-LOG_REDIRECT=">> /tmp/xmonad.log"
-echo "Undock" $LOG_REDIRECT
+echo "Undock" >> "$XMONAD_LOG_FILE"
 
 if type monitor_laptop_set.sh ; then
     monitor_laptop_set.sh
@@ -8,7 +7,7 @@ if type monitor_laptop_set.sh ; then
 fi
 
 if type compton; then
-    echo "Start compton if not running" $LOG_REDIRECT
+    echo "Start compton if not running" >> "$XMONAD_LOG_FILE"
     # start compton if not running. xrandr seems to crash it sometimes.
     pgrep compton || compton --config "$HOME/.xmonad/compton.conf" &
 fi
@@ -18,6 +17,13 @@ if type layout_dell.sh; then
     layout_dell.sh
 fi
 
-if type xfce4-power-manager; then
-    xfce4-power-manager
-fi
+#### !!! Here is a gotcha. After starting a gnome session, starting
+#### xfce4-power-manager hangs at next start of xmonad. With this
+#### commented out, xmonad does starts, AND does have a power icon. It
+#### seems like the gnome power manager took over, upon starting the
+#### gnome DE, and borked xfce4-power-manager?
+####if type xfce4-power-manager; then
+####    xfce4-power-manager
+####fi
+
+echo "undock finished" >> "$XMONAD_LOG_FILE"

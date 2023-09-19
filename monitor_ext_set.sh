@@ -32,10 +32,11 @@ if [ $NB_CONNECT_OUTPUT == 3 ] ; then
 fi
 
 if [ $NB_CONNECT_OUTPUT == 2 ] ; then
-    # dock with single monitor, don't use laptop
-    xrandr \
-	--output $MONITOR_LAPTOP --off \
-        --output $MONITOR_LEFT --auto
+    # dock with single monitor, duplicate for meeting room
+    # TODO: only duplicate if the other monitor has high resolution
+    # (meeting room with stupidly large screen).
+    xrandr --output $MONITOR_LAPTOP --auto --mode 1920x1080
+    xrandr --output $MONITOR_LEFT --auto --mode 1920x1080
 fi
 
 if [ $NB_CONNECT_OUTPUT == 1 ] ; then
