@@ -1,0 +1,8 @@
+#!/bin/sh
+# xsecurelock built from source, had to fix and sent a PR:
+# https://github.com/google/xsecurelock/pull/176
+XSECURELOCK_SAVER_IMAGE=$(find ~/Pictures/lock_backgrounds -type f | sort -R | head -1) \
+		       XSECURELOCK_SAVER=~/bin/my_lock_photo_saver \
+		       xsecurelock
+
+#XSECURELOCK_LIST_VIDEOS_COMMAND='find ~/Videos/screenlock -type f' XSECURELOCK_SAVER=~/bin/my_lock_video_saver xsecurelock
