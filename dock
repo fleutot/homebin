@@ -17,5 +17,3 @@ if type layout_kinesis.sh; then
     # Changing mode looks like it does something with X that breaks the layout
     layout_kinesis.sh
 fi
-
-pkill xfce4-power-manager
