@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "monitor_ext_set" > /tmp/xmonad.log
+echo "monitor_ext_set" >> /tmp/xmonad.log
 
 LOG_REDIRECT="|tee /tmp/xmonad.log"
 
@@ -27,8 +27,36 @@ xrandr --output $MONITOR_LEFT --auto
 if [ $NB_CONNECT_OUTPUT == 3 ] ; then
     xrandr \
 	--output $MONITOR_LEFT --auto --primary \
-        --output $MONITOR_RIGHT --right-of $MONITOR_LEFT --auto \
-	--output $MONITOR_LAPTOP --auto --right-of $MONITOR_RIGHT --mode 1680x1050
+	--output $MONITOR_RIGHT --right-of $MONITOR_LEFT --auto \
+	--output $MONITOR_LAPTOP --auto --right-of $MONITOR_RIGHT
+
+    # Shift the laptop monitor downwards, closer to where it
+    # physically is.
+    raw=$(xrandr --current)
+
+    regex="([0-9])+x([0-9]+)\+([0-9]+)\+([0-9]+)"
+    right_line=$(echo "$raw" | grep "$MONITOR_RIGHT connected ")
+    laptop_line=$(echo "$raw" | grep "$MONITOR_LAPTOP connected ")
+
+    if [[ "$right_line" =~ $regex ]]
+    then
+	right_y_size=${BASH_REMATCH[2]}
+    else
+	echo -e "Error parsing xrandr output for right" $LOG_REDIRECT
+    fi
+
+    if [[ "$laptop_line" =~ $regex ]]
+    then
+	laptop_y_size=${BASH_REMATCH[2]}
+	laptop_x_pos=${BASH_REMATCH[3]}
+	laptop_y_pos=${BASH_REMATCH[4]}
+    else
+	echo -e "Error parsing xrandr output for laptop" $LOG_REDIRECT
+    fi
+
+    laptop_y_pos=$((laptop_y_pos+right_y_size-laptop_y_size))
+
+    xrandr --output $MONITOR_LAPTOP --pos ${laptop_x_pos}x${laptop_y_pos}
 fi
 
 if [ $NB_CONNECT_OUTPUT == 2 ] ; then
