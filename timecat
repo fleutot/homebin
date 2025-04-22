@@ -33,5 +33,8 @@ if [[ $# -gt 0 ]]; then
    stty -F $tty $bit_rate -echo
 fi
 
-awk '{ print strftime("%Y-%m-%dT%H:%M:%S |"), $0; fflush(); }' $tty
-#awk '{ print $0, "| ", $1; fflush(); }' $(date +%Y-%M-%dT%H:%M:%S.%3N) $tty
+# This for without ms:
+#awk '{ print strftime("%Y-%m-%dT%H:%M:%S |"), $0; fflush(); }' $tty
+# This for ms:
+cat "$tty" |
+    awk '{ cmd="date +%Y-%m-%dT%H:%M:%S.%3N"; cmd | getline x; close(cmd); print x, "|", $0 }'
